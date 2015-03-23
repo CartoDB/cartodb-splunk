@@ -1,0 +1,21 @@
+.cartodbwrapper{
+    border-top: 1px solid #bfbfbf;
+    border-bottom: 1px solid #bfbfbf;
+    position: relative;
+}
+
+.cartodbwrapper .msg,.cartodbwrapper .mapcontainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%
+}
+.cartodbwrapper .msg{
+    z-index:10;
+    background-color:rgba(255,255,255,0.5);
+    padding-left: 10px;
+}
+
+.cartodb .splunk-message-container {
+    padding: 1px;
+}

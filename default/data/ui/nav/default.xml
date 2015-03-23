@@ -1,0 +1,7 @@
+<nav>
+    <view name="search"/>
+    <a href="/manager/cartodb/apps/local/cartodb/setup?action=edit">Setup</a>
+    <a href="/app/cartodb/cartodb">CartoDB</a>
+    <a href="/app/cartodb/simplemap">Simple Map</a>
+    <view name="dashboards" />
+</nav>

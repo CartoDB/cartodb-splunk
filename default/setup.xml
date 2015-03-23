@@ -1,0 +1,11 @@
+<setup>
+  <block title="Configure the CartoDB app"
+         endpoint="cartodb/cartodbconfig" entity="cartodb">
+      <text>Please provide your api_key from your CartoDB account.</text>
+      <input field="api_key">
+        <label>api_key</label>
+        <type>text</type>
+      </input>
+  </block>
+</setup>
+
