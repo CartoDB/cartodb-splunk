@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>CartoDB Simple Map</title>
+    <title>CartoDB Torque Map</title>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <link rel="shortcut icon" href="{{SPLUNKWEB_URL_PREFIX}}/static/img/favicon.ico" />
@@ -11,7 +11,7 @@
     <!--[if IE 7]><link rel="stylesheet" href="{{SPLUNKWEB_URL_PREFIX}}/static/css/sprites-ie7.css" /><![endif]-->
 
     <link rel="stylesheet" type="text/css" media="all" href="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/themes/css/cartodb.css">
-    <link href="{{SPLUNKWEB_URL_PREFIX}}/static/app/cartodb/cartodb/cartodb.css" rel="stylesheet" type="text/css" />
+    <link href="{{SPLUNKWEB_URL_PREFIX}}/static/app/cartodb/cartodb/cartodb.css" rel="stylesheet" type="text/css" />    
 </head>
 
 <body>
@@ -22,7 +22,7 @@
     <div class="dashboard-body container-fluid main-section-body" data-role="main">
         <div style="margin:2%">
             <div style="padding-bottom:10px">
-            This shows a simple map where for each event a circle marker is shown. Click a marker to see its value.
+            This shows a torque map where data is animated... (fixme)
             </div>
             <div style="margin-bottom:10px">
                 <div id="search-bar"></div>
@@ -50,10 +50,12 @@ require.config({
     paths:
     {
         "app": "../app",
-        "leaflet": "../app/cartodb/cartodb/leaflet"
+        "leaflet": "../app/cartodb/cartodb/leaflet",
+        "torque": "../app/cartodb/cartodb/torque.full.uncompressed"
     },
     shim: {
-        "leaflet": ["splunkjs/config"]
+        "leaflet": ["splunkjs/config"],
+        "torque": ["leaflet"]
     }
 });
         var deps = [
@@ -64,7 +66,7 @@ require.config({
             "splunkjs/mvc/searchcontrolsview",
             "splunkjs/mvc/tableview",
             "splunkjs/mvc/searchmanager",
-            "app/cartodb/cartodb/simplemap"
+            "app/cartodb/cartodb/torquemap"
         ];
         require(deps, function(mvc) {
             // Load individual components
@@ -73,7 +75,7 @@ require.config({
             var SearchBarView = require("splunkjs/mvc/searchbarview");
             var SearchControlsView = require("splunkjs/mvc/searchcontrolsview");
             var TableView = require("splunkjs/mvc/tableview");
-            var CartoDBSimpleMap = require("app/cartodb/cartodb/simplemap");
+            var CartoDBTorquemapMap = require("app/cartodb/cartodb/torquemap");
             var SearchManager = require("splunkjs/mvc/searchmanager");
 
             // Create a header
@@ -120,12 +122,13 @@ require.config({
                 el: $("#search-table")
             }).render();
 
-            // Create the simple map
-            var mysimplemap = new CartoDBSimpleMap({
-                id: "simplemap1",
+            // Create the torque map
+            var mytorquemap = new CartoDBTorquemapMap({
+                id: "torquemap1",
                 managerid: "search1",
                 el: $("#search-map"),
-                height: "400px"
+                height: "400px",
+                tileOptions: {attribution: 'CartoDB'}
             }).render();
         });
     </script>

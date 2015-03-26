@@ -5,6 +5,7 @@ define(function(require, exports, module) {
     var SimpleSplunkView = require('splunkjs/mvc/simplesplunkview');
     var Messages = require("splunkjs/mvc/messages");
     var utils = require('splunkjs/mvc/utils');
+    var LL = require('leaflet');
 
     Messages.messages['map-error']={icon: "warning-sign",level: "error",message: _("Map loading failed").t()};
 
@@ -18,6 +19,7 @@ define(function(require, exports, module) {
             zoom: 2,
             height: "400px",
             tiles: "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
+            tileOptions: {},
             api_key: ""
         },
 
@@ -72,11 +74,12 @@ define(function(require, exports, module) {
             try {
 
                 // Initiate a leaflet map
-                this.map = new L.Map(this.id + '-map', {
+                this.map = new LL.Map(this.id + '-map', {
                     center: this.options.center,
                     zoom: this.options.zoom
                 });
-                L.tileLayer(this.options.tiles).addTo(this.map);
+                LL.tileLayer(this.options.tiles, this.options.tileOptions)
+                    .addTo(this.map);
 
                 if(this.postCreateMap){
                     this.postCreateMap();
@@ -136,6 +139,9 @@ define(function(require, exports, module) {
             }
             if(!this.options.tiles || this.options.tiles.trim()===""){
                 this.options.tiles=this.default_options.tiles;
+            }
+            if(!this.options.tileOptions){
+                this.options.tileOptions=this.default_options.tileOptions;
             }
         }
     });

@@ -3,5 +3,6 @@
     <a href="/manager/cartodb/apps/local/cartodb/setup?action=edit">Setup</a>
     <a href="/app/cartodb/cartodb">CartoDB</a>
     <a href="/app/cartodb/simplemap">Simple Map</a>
+    <a href="/app/cartodb/torquemap">Torque Map</a>
     <view name="dashboards" />
 </nav>

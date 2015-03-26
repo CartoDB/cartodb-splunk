@@ -5,11 +5,12 @@ define(function(require, exports, module) {
     var CartoDB = require('app/cartodb/cartodb/cartodb');
     var Messages = require("splunkjs/mvc/messages");
     var utils = require('splunkjs/mvc/utils');
+    var LL = require('leaflet');
     
     // Define the custom view class
     var CartoDBSimpleMap = CartoDB.extend({
         className: "simplemap",
-        markers: L.layerGroup(),
+        markers: LL.layerGroup(),
 
         options: {
             
@@ -30,7 +31,7 @@ define(function(require, exports, module) {
                     if(this.options.marker){
                         marker=this.options.marker(data[i]);
                     }else{
-                        marker=L.circleMarker(latlng, {
+                        marker=LL.circleMarker(latlng, {
                             weight: 1.5,
                             opacity: 1,
                             color: "#FFFFFF",
@@ -41,7 +42,7 @@ define(function(require, exports, module) {
                     }
                     if(marker){
                         marker.on('click', function (e) {
-                            var popup = L.popup()
+                            var popup = LL.popup()
                                 .setLatLng(this.getLatLng())
                                 .setContent("<p>" + this.options.title + "</p>")
                                 .openOn(self.map);

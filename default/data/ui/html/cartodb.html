@@ -12,8 +12,6 @@
 
     <link rel="stylesheet" type="text/css" media="all" href="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/themes/css/cartodb.css">
     <link href="{{SPLUNKWEB_URL_PREFIX}}/static/app/cartodb/cartodb/cartodb.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js" type="text/javascript" charset="utf-8"></script>
-    <script src="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.12/cartodb.js" type="text/javascript" charset="utf-8"></script>
 </head>
 
 <body>
@@ -42,7 +40,11 @@ require.config({
     waitSeconds: 0, // Disable require.js load timeout
     paths:
     {
-        "app": "../app"
+        "app": "../app",
+        "leaflet": "../app/cartodb/cartodb/leaflet"
+    },
+    shim: {
+        "leaflet": ["splunkjs/config"]
     }
 });
 
